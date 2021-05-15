@@ -23,10 +23,13 @@ class Busquedas {
                 params: this.paramsMapbox
             });
 
-            const resp = await instance.get()
-            // const resp = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/merida.json?access_token=pk.eyJ1Ijoia2V2aW5yYW5nZWxzIiwiYSI6ImNrb3B3YnA4djBsdXMyd3J4cHpiaDY1aHMifQ.i3aSQCHW0NaX9wjS8X52TA&limit=5&language=es`)
-            console.log(resp.data);
-            return []
+            const resp = await instance.get();
+            return resp.data.features.map( lugar => ({
+                id: lugar.id,
+                name: lugar.place_name,
+                lng: lugar.center[0],
+                lat: lugar.center[1]
+            }))
             
         } catch (error) {
             return []

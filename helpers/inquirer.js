@@ -69,12 +69,13 @@ const leerInput = async(message) => {
     return desc
 }
 
-const listadoBorrar = async( tareas = [])=>{
-    const choices = tareas.map((tarea,i) =>{
+const listarLugares = async( lugares = [])=>{
+
+    const choices = lugares.map((lugar,i) =>{
         const idx = `${i+1}`.green;
         return {
-            value : tarea.id,
-            name : `${ idx } ${ tarea.desc }`
+            value : lugar.id,
+            name : `${ idx } ${ lugar.name }`
         }
     });
 
@@ -87,7 +88,7 @@ const listadoBorrar = async( tareas = [])=>{
         {
          type : 'list',
          name : 'id',
-         message : 'borrar',
+         message : 'Selecciona un lugar',
          choices
         }
     ];
@@ -133,7 +134,7 @@ module.exports = {
     inquirerMenu,
     pausa,
     leerInput,
-    listadoBorrar,
+    listarLugares,
     confirmar,
     mostrarListadoCheckList
 }
